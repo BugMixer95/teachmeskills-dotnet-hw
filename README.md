@@ -24,6 +24,7 @@ This app allows user to read text and make some actions with it, like the follow
 * find and show all interrogative and exclamation sentences;
 * find and show all sentences without commas;
 * show words that start and end with the same symbol.
+
 User can use one of the following options of inputting text:
 * type it by himself manually;
 * choose text file.
