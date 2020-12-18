@@ -232,6 +232,10 @@ namespace HW3_TextReader
                         "\n* Exit the program                                                       - 'exit'");
                     Console.Write("Your input: ");
 
+                    // refreshing user text
+                    userText.Clear();
+                    userText.Insert(0, userTextSource);
+
                     // parsing user's text to separate sentences
                     char[] chars = UserTextToChars(userTextSource);
                     punctuationMarksQty = CountSentences(chars);
@@ -246,9 +250,6 @@ namespace HW3_TextReader
 
                     while (!userActionIsDone)
                     {
-                        userText.Clear();
-                        userText.Insert(0, userTextSource);
-
                         userAction = Console.ReadLine().ToLower().Trim();
 
                         // declaring variables for sentence actions
@@ -491,6 +492,13 @@ namespace HW3_TextReader
                                 {
                                     endIndex = int.Parse(punctuationIndexes[i]);
                                     outputLength = (endIndex - startIndex + 1) == 0 ? 1 : (endIndex - startIndex + 1);
+
+                                    // small check for case when user's text is just one sentence
+                                    if (outputLength > (chars.Length - 1))
+                                    {
+                                        outputLength = endIndex;
+                                    }
+
                                     outputSentence = userTextSource.Substring(startIndex, outputLength);
                                     isOnlyPunctuationMarks = OnlyPunctuationMarksCheck(outputSentence);
 
@@ -516,6 +524,13 @@ namespace HW3_TextReader
                                 {
                                     endIndex = int.Parse(punctuationIndexes[i]);
                                     outputLength = (endIndex - startIndex + 1) == 0 ? 1 : (endIndex - startIndex + 1);
+
+                                    // small check for case when user's text is just one sentence
+                                    if (outputLength > (chars.Length - 1))
+                                    {
+                                        outputLength = endIndex;
+                                    }
+
                                     outputSentence = userTextSource.Substring(startIndex, outputLength);
                                     isOnlyPunctuationMarks = OnlyPunctuationMarksCheck(outputSentence);
 
