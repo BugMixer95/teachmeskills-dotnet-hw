@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using HW4_ProductInventory.lib;
 using HW4_ProductInventory.products;
 
@@ -9,7 +10,8 @@ namespace HW4_ProductInventory
         public static void Main(string[] args)
         {
             // setting up localization, just in case
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            var appLocale = ConfigurationManager.AppSettings.Get("appLocale");
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(appLocale);
 
             // declaring variables
             bool isProgramStarted = true;

@@ -1,19 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Configuration;
 
 namespace HW4_ProductInventory.lib
 {
     public class MessageLib
     {
+        private static readonly string appName = ConfigurationManager.AppSettings.Get("appName");
+
         public static void SayHello()
         {
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.Write("(Alcohol) ");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("Product Inventory ");
+            Console.Write(appName);
             Console.ResetColor();
-            Console.WriteLine("[Version 1.0]");
+            Console.WriteLine(" [Version 1.0]");
             Console.WriteLine("(c) 2020 TMS .NET Courses. All rights reserved. \n");
         }
 
@@ -40,7 +39,7 @@ namespace HW4_ProductInventory.lib
         {
             Console.Write("\nThank you for using ");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("Product Inventory");
+            Console.Write(appName);
             Console.ResetColor();
             Console.WriteLine("! \nCome back soon!");
         }
