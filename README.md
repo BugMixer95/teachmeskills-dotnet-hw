@@ -28,3 +28,7 @@ This app allows user to read text and make some actions with it, like the follow
 User can use one of the following options of inputting text:
 * type it by himself manually;
 * choose text file.
+
+## ProductInventory
+This app allows user to choose one or several products from the available ones and to add it to cart.
+App shows amount and price of every product and total cart price depending on what products are added.
