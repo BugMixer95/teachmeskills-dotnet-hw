@@ -142,6 +142,7 @@ namespace HW4_ProductInventory
                         
                         break;
 
+                    // otherwise throw an error
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write("\nInvalid input! Please try again: ");
@@ -156,28 +157,57 @@ namespace HW4_ProductInventory
         private static void ParseUserInputToInt(bool isMainMenu, out int userInputParsed)
         {
             bool validation;
+            bool isOperationSuccessful = false;
+
+            userInputParsed = 0;
+
+            int minMenuBorder = (int)MenuActions.AddBeer;
+            int maxMenuBorder = (int)MenuActions.Exit;
 
             do
             {
-                string userInput = Console.ReadLine();
-                validation = int.TryParse(userInput, out userInputParsed);
+                try
+                {
+                    string userInput = Console.ReadLine().Trim();
+                    validation = int.TryParse(userInput, out userInputParsed);
 
-                if (!validation && !isMainMenu)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nInvalid input! Please type integer value: ");
-                    Console.ResetColor();
-                    Console.Write("Your input: ");
+                    bool isInputInsideMenuBorders = (userInputParsed >= minMenuBorder && userInputParsed <= maxMenuBorder);
+                    bool isInputPositive = userInputParsed >= 0;
+
+                    // this block is called when user inputs invalid amount of goods he wants to add to cart
+                    if (!isMainMenu && (!validation || !isInputPositive))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\nInvalid input! Please type integer non-negative value.");
+                        Console.ResetColor();
+                        Console.Write("Your input: ");
+                    }
+
+                    // this block is called when user inputs invalid menu action
+                    else if (isMainMenu && (!validation || !isInputInsideMenuBorders))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\nInvalid input! Please type one of the available commands.");
+                        Console.ResetColor();
+                        Console.Write("Your input: ");
+                    }
+
+                    // otherwise go on
+                    else
+                    {
+                        isOperationSuccessful = true;
+                    }
                 }
-                else if (!validation && isMainMenu)
+
+                // catching unexpected exceptions
+                catch (Exception)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nInvalid input! Please type one of the available commands: ");
+                    Console.WriteLine("\nOops! An unexpected error occured, please try again: ");
                     Console.ResetColor();
-                    Console.Write("Your input: ");
                 }
             }
-            while (!validation);
+            while (!isOperationSuccessful);
         }
 
         private enum MenuActions
