@@ -14,6 +14,15 @@ namespace HW4_ProductInventory.lib
             Console.ResetColor();
             Console.WriteLine(" [Version 1.0]");
             Console.WriteLine("(c) 2020 TMS .NET Courses. All rights reserved. \n");
+
+            Console.WriteLine("Welcome to the first online console liquor store in the world!");
+            Console.WriteLine("We will help you to create a special mood for your party by adding different type of drinks to your cart.");
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("(Opportunity to order selected bunch of liquor will be added in future versions.)");
+            Console.ResetColor();
+
+            Console.WriteLine();
+            Console.WriteLine("Press any key to continue...");
         }
 
         public static void Menu()
@@ -21,7 +30,7 @@ namespace HW4_ProductInventory.lib
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("To perform an action please type a number.");
             Console.ResetColor();
-            Console.WriteLine("Possible actions are: ");
+            Console.WriteLine("\nPossible actions are: ");
 
             Console.WriteLine("1 - add Beer to your cart");
             Console.WriteLine("2 - add Wine to your cart");

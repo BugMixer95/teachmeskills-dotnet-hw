@@ -137,12 +137,20 @@ namespace HW4_ProductInventory
                     // exiting the program
                     case (int)MenuActions.Exit:
                         MessageLib.SayGoodbye();
-                        return;
+
+                        isProgramStarted = false; 
+                        
+                        break;
+
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("\nInvalid input! Please try again: ");
+                        Console.ResetColor();
+
+                        break;
                 }
             }
             while (isProgramStarted);
-
-            Console.ReadKey();
         }
 
         private static void ParseUserInputToInt(bool isMainMenu, out int userInputParsed)
